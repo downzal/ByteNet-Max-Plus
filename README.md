@@ -19,7 +19,7 @@ A fork of Elitriare's ByteNet Max networking module, wich now introduces Hooks, 
   Defining a namespace with *only* hooks automatically skips network replication and buffer setup, saving memory.
 
 - **High-Performance Signal Engine:**
-  Powered by a singly-linked list and coroutine thread pooling for fast, allocation-light firing (```:listen, :once, :wait, :send, :disconnectAll```
+  Powered by a singly-linked list and coroutine thread pooling for fast, allocation-light firing (```:listen, :once, :wait, :send, :disconnectAll```)
 
 # Small example
 
