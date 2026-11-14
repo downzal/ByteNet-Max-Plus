@@ -27,6 +27,7 @@ local vec3 = require(script.dataTypes.vec3)
 local namespace = require(script.namespaces.namespace)
 local definePacket = require(script.packets.definePacket)
 local defineQuery = require(script.queries.defineQuery)
+local defineHook = require(script.hooks.defineHook)
 local serverProcess = require(script.process.server)
 local values = require(script.replicated.values)
 local types = require(script.types)
@@ -43,6 +44,7 @@ local t = {
 	definePacket = definePacket,
 	defineQuery = defineQuery,
 	defineNamespace = namespace,
+	defineHook = defineHook,
 
 	auto = auto(),
 	array = array,

@@ -21,19 +21,41 @@ local queryCount = 0
 return function(
 	name: string,
 	input: () -> {
-		packets: { [string]: any },
-		queries: { [string]: any },
+		packets: { [string]: any }?,
+		queries: { [string]: any }?,
+		hooks : { [string]: any}?,
 	}
 )
-	local namespaceReplicator = values.access(name)
 
 	namespacesDependencies.start(name)
 	local namespaceInput = input()
 
 	local packets = namespaceInput.packets or {}
 	local queries = namespaceInput.queries or {}
-
+	local hooks = namespaceInput.hooks or {}
+	
+	local hasPackets = next(packets) ~= nil
+	local hasQueries = next(queries) ~= nil
+	local hasHooks = next(hooks) ~= nil
+	
+	local hooksResult = {}
+	if hasHooks then
+		for key, hookFn in pairs(hooks) do
+			hooksResult[key] = hookFn()
+		end
+	end
+	
+	if not hasPackets and not hasQueries then
+		namespacesDependencies.empty()
+		return {
+			packets = {},
+			queries = {},
+			hooks = hooksResult,
+		}
+	end
+	
 	local structs = namespacesDependencies.empty()
+	local namespaceReplicator = values.access(name)
 
 	local packetResult = {}
 	local queryResult = {}
@@ -87,6 +109,7 @@ return function(
 	local TotalResult = {
 		packets = packetResult,
 		queries = queryResult,
+		hooks = hooksResult,
 	}
 
 	return TotalResult
