@@ -1,3 +1,4 @@
+local hook = require(script.Parent.hooks.hook)
 export type namespaceData = {
 	packets: {
 		[string]: any,
@@ -91,6 +92,7 @@ export type ByteNet = {
 		properties: queryProperties<RequestType, ResponseType>
 	) -> Query<RequestType, ResponseType>,
 	defineNamespace: <T>(name: string, namespace: () -> namespaceData & T) -> T,
+	defineHook: <T...>() -> hook.hook<T...>,
 
 	auto: unknown,
 	struct: <T>(format: T) -> T,
