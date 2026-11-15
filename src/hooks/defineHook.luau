@@ -2,6 +2,8 @@
 
 local hook = require(script.Parent.hook)
 
-return function<T...>() : hook.hook<T...>
-	return hook.new()
+return function<T...>(props: { value: any }?): () -> hook.hook<T...>
+	return function()
+		return hook.new()
+	end
 end
