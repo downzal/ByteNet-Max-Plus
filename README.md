@@ -21,7 +21,7 @@ A fork of Elitriare's ByteNet Max networking module, wich now introduces Hooks, 
 - **High-Performance Signal Engine:**
   Powered by a singly-linked list and coroutine thread pooling for fast, allocation-light firing (```:listen, :once, :wait, :send, :disconnectAll```)
 
-# Small example
+# Rough example
 
 *Setting up the hooks:*
 ```lua
