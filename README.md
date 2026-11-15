@@ -36,7 +36,7 @@ return ByteNetMaxPlus.defineNamespace("Repo", function()
 
     hooks = {
         --our hook
-        onPlayerDamaged = ByteNetMaxPlus.defineHook<Player, number>();
+        onPlayerDamaged = ByteNetMaxPlus.defineHook();
       }
   }
 end)
@@ -51,7 +51,7 @@ local Repo = require(ReplicatedStorage.Networking.Repo)
 local onPlayerDamaged = Repo.hooks.onPlayerDamaged
 
 --listen to the hook
-local connection = onPlayerDamaged:listen(function()
+local connection = onPlayerDamaged:listen(function(player : Player?; damage : number)
   print(player.Name.." took "..damage.." damage!"
 end)
 
