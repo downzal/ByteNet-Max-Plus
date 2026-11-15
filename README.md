@@ -36,7 +36,7 @@ return ByteNetMaxPlus.defineNamespace("Repo", function()
 
     hooks = {
         --our hook
-        onPlayerDamaged = ByteNetMaxPlus.defineHook();
+        onPlayerDamaged = ByteNetMaxPlus.defineHook<<Player?, number>>() 
       }
   }
 end)
